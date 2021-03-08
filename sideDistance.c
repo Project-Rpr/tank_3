@@ -41,6 +41,8 @@
 #include "main.h"
 #include "debug.h"
 
+#define NEAR    -1
+#define FAR     100
 
 int     sideDistance(void);
 float   getSideDistance(int);
@@ -117,15 +119,17 @@ float getSideDistance(int analogChannel){
 
     /*DEBUG*/
 #if DEBUG_SIDE_DISTANCE != OFF
-    if(analogChannel==LEFT){
+    if(analogChannel == LEFT){
         printf("LEFT  = ");
     }else{
         printf("RIGHT = ");
     }
     printf("%d\n", analogValue);
 
-    if(sideDistance==-1){
-        printf("out of range.(%3fV)\n", volt);
+    if(sideDistance == NEAR){
+        printf("NEAR (%3fV)\n", volt);
+    }else if(sideDistance == FAR){
+        printf("FAR (%3fV)\n", volt);
     }else{
         printf("%3fcm(%3fV)\n", sideDistance, volt);
     }
@@ -238,7 +242,11 @@ float changeVoltToDistance(float volt){
     float V[6]  = {3.0, 2.3, 1.6, 1.3, 0.9, 0.5};           /*電圧配列*/
 
     if((V[5] > volt) || (volt > V[0])){                     /*測定可能範囲外*/
-        distance = -1;
+        if(volt > V[0]){
+            distance = NEAR;
+        }else{
+            distance = FAR;
+        }
 
     }else if((V[0] >= volt) && (volt > V[1])){
         distance = getDistance(D[0], D[1], V[0], V[1], volt);
