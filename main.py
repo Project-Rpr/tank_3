@@ -20,30 +20,6 @@ tank    = 0
 voice   = 1
 mode = tank
 
-A_time = 2
-
-def front_test():
-    print('前面距離 = ', math.floor(front.distance()), 'cm')
-
-def side_test():
-    print(side.judge())
-    time.sleep(A_time)
-
-def motor_test():
-    motor.forward()
-    time.sleep(A_time)
-
-    motor.t_left()
-    time.sleep(A_time)
-
-    motor.t_right()
-    time.sleep(A_time)
-
-    motor.back()
-    time.sleep(A_time)
-
-    motor.stop()
-    time.sleep(A_time)
 
 def init():
     #GPIO初期化
@@ -56,22 +32,77 @@ def init():
     GPIO.output(G.OUT_GPIOs, GPIO.LOW)
 
 if __name__=='__main__':
-    #初期化
-    init()
-
     try:
         #デバッグ用
         #while True:
-            #debug.auto()   #自動デバッグ
-            #debug.manual()  #手動デバッグ
+            #debug.front_distance()  #前面距離測定
+            #debug.side_distance()   #側面距離測定
+            #debug.auto_motor()      #動作制御
+            #debug.auto_voice()      #自動音声入力
+            #debug.manual_voice()    #手動音声入力
 
         #voice_recクラスのインスタンスを生成
         #voice_rec_start = voice_rec.voice_rec()
 
+        #変数宣言&初期化
+        f_distance  = 0     #前面距離
+        t_flag      = 0     #左右判定フラグ
+
+        #初期化
+        init()
+
         while True:
-            front_test()
-            side_test()
-            motor_test()
+            #前面距離を取得
+            f_distance = front.distance()
+
+            #前面距離が「停止距離」未満の場合
+            if f_distance < G.STOP_D:
+                #動作前停止
+                motor.stop()
+                time.sleep(G.S_time)
+                
+                #停止
+                time.sleep(G.S_time)
+                
+                #後退
+                motor.back()
+                time.sleep(G.B_time)
+                
+                #動作後停止
+                motor.stop()
+                time.sleep(G.S_time)
+
+                
+            #前面距離が「停止距離」以上「旋回距離」未満の場合
+            elif (f_distance >= G.STOP_D) and (f_distance < G.TURN_D):
+                #動作前停止
+                motor.stop()
+                time.sleep(G.S_time)
+                
+                #旋回方向の決定
+                t_flag = side.judge()
+
+                #旋回方向が「右」の場合
+                if t_flag == G.RIGHT:
+                    motor.t_right()
+
+                #旋回方向が「左」の場合
+                else:
+                    motor.t_left()
+
+                while f_distance < G.TURN_D:
+                    f_distance = front.distance()
+                    time.sleep(G.T_time)
+
+                #動作後停止
+                motor.stop()
+                time.sleep(G.S_time)
+                
+
+            #前面距離が「旋回距離」以上の場合
+            elif f_distance >= G.TURN_D:
+                motor.forward()
+
 
     except KeyboardInterrupt:
         GPIO.cleanup()

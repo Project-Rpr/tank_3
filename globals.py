@@ -1,3 +1,4 @@
+#ON/OFF
 ON  = 1
 OFF = 0
 
@@ -5,7 +6,24 @@ OFF = 0
 LEFT    = 0
 RIGHT   = 1
 
-#超音波センサで使用
+#旋回距離
+TURN_D  = 30
+#停止距離
+STOP_D  = 15
+
+#前進時間
+F_time  = 0.1
+#後退時間
+B_time  = 0.5
+#旋回時間
+T_time  = 0.5
+#停止時間
+S_time  = 1
+#音声入力時間
+V_time  = 2
+
+
+#超音波センサ
 TRIG = 17
 ECHO = 27
 

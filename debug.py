@@ -1,7 +1,16 @@
 import main as M
-import RPi.GPIO as GPIO
-import word_check
 import globals as G
+import front
+import side
+import motor
+import word_check
+
+import RPi.GPIO as GPIO
+import math
+import time
+
+#動作時間(Active_time)
+A_time = 2
 
 
 #########################
@@ -26,8 +35,35 @@ print_side_distance = G.ON
 #動作制御命令の出力 (ON/OFF)
 print_motor         = G.ON
 
-#自動
-def auto():
+
+#前面距離測定
+def front_distance():
+    print('前面距離 =', math.floor(front.distance()), 'cm')
+
+#側面距離測定
+def side_distance():
+    print(side.judge())
+    time.sleep(A_time)
+
+#動作制御
+def auto_motor():
+    motor.forward()
+    time.sleep(A_time)
+
+    motor.t_left()
+    time.sleep(A_time)
+
+    motor.t_right()
+    time.sleep(A_time)
+
+    motor.back()
+    time.sleep(A_time)
+
+    motor.stop()
+    time.sleep(A_time)
+
+#自動音声入力
+def autoi_voice():
     word = 'こんにちは'
     print(word)
     word_check.word_check(word)
@@ -63,8 +99,8 @@ def auto():
     word_check.word_check(word)
     time.sleep(debug_time)
 
-#手動
-def manual():
+#手動音声入力
+def manual_voice():
     print('語句を入力')
     word = input()
     word_check.word_check(word)
