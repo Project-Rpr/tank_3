@@ -1,6 +1,7 @@
 import globals as G
 import front
 import side
+import motor
 import voice_rec
 import debug
 
@@ -18,6 +19,31 @@ spi = spidev.SpiDev()
 tank    = 0
 voice   = 1
 mode = tank
+
+A_time = 2
+
+def front_test():
+    print('前面距離 = ', math.floor(front.distance()), 'cm')
+
+def side_test():
+    print(side.judge())
+    time.sleep(A_time)
+
+def motor_test():
+    motor.forward()
+    time.sleep(A_time)
+
+    motor.t_left()
+    time.sleep(A_time)
+
+    motor.t_right()
+    time.sleep(A_time)
+
+    motor.back()
+    time.sleep(A_time)
+
+    motor.stop()
+    time.sleep(A_time)
 
 def init():
     #GPIO初期化
@@ -42,12 +68,10 @@ if __name__=='__main__':
         #voice_recクラスのインスタンスを生成
         #voice_rec_start = voice_rec.voice_rec()
 
-        #while True:
-            #print('前面距離 = ', math.floor(front.distance()), 'cm')
-
         while True:
-            print(side.judge())
-            time.sleep(1)
+            front_test()
+            side_test()
+            motor_test()
 
     except KeyboardInterrupt:
         GPIO.cleanup()

@@ -1,4 +1,5 @@
 import globals as G
+import debug
 import time
 import RPi.GPIO as GPIO
 
@@ -17,5 +18,7 @@ def distance():
 
     duration = (e_time - s_time)
     front_distance = (duration / 2) * 34350
-
+    #デバッグ用
+    if debug.print_front_distance == G.ON:
+        print("前面距離 =", front_distance, "cm")
     return front_distance

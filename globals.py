@@ -1,16 +1,28 @@
+ON  = 1
+OFF = 0
+
+#旋回方向判定
+LEFT    = 0
+RIGHT   = 1
+
+#超音波センサで使用
 TRIG = 17
 ECHO = 27
 
-#MODE_PIN = 12
-#FORWARD_PIN = 16
-#RIGHT_PIN = 20
-#LEFT_PIN = 21
-#PINs = [MODE_PIN, FORWARD_PIN, RIGHT_PIN, LEFT_PIN]
+#左後輪
+LEFT_BACK_0         = 14
+LEFT_BACK_1         = 15
+LEFT_BACK_POWER     = 18
+LEFT_BACK           = [LEFT_BACK_0, LEFT_BACK_1, LEFT_BACK_POWER]
 
-OUT_GPIOs   = [TRIG]
+#右後輪
+RIGHT_BACK_0        = 23
+RIGHT_BACK_1        = 24
+RIGHT_BACK_POWER    = 25
+RIGHT_BACK          = [RIGHT_BACK_0, RIGHT_BACK_1, RIGHT_BACK_POWER]
+
+OUT_GPIOs   = [ TRIG,\
+                LEFT_BACK_0, LEFT_BACK_1, LEFT_BACK_POWER,\
+                RIGHT_BACK_0, RIGHT_BACK_1, RIGHT_BACK_POWER]
 IN_GPIOs    = [ECHO]
-#GPIOs       = [OUT_GPIOs, IN_GPIOs]
-
-LEFT    = 0
-RIGHT   = 1
 
