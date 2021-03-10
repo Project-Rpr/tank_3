@@ -11,3 +11,6 @@ OUT_GPIOs   = [TRIG]
 IN_GPIOs    = [ECHO]
 #GPIOs       = [OUT_GPIOs, IN_GPIOs]
 
+LEFT    = 0
+RIGHT   = 1
+

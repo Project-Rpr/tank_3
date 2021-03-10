@@ -1,12 +1,18 @@
 import globals as G
 import front
+import side
 import voice_rec
 import debug
 
 import RPi.GPIO as GPIO
-import math
+import spidev
 import sys
+import math
+import subprocess
+import time
 
+#SPIセットアップ
+spi = spidev.SpiDev()
 
 #音声入力モード初期設定
 tank    = 0
@@ -23,7 +29,8 @@ def init():
     #GPIOクリーンアップ
     GPIO.output(G.OUT_GPIOs, GPIO.LOW)
 
-if __name__=="__main__":
+if __name__=='__main__':
+    #初期化
     init()
 
     try:
@@ -35,11 +42,16 @@ if __name__=="__main__":
         #voice_recクラスのインスタンスを生成
         #voice_rec_start = voice_rec.voice_rec()
 
+        #while True:
+            #print('前面距離 = ', math.floor(front.distance()), 'cm')
+
         while True:
-            print("前面距離 = ", math.floor(front.distance()), "cm")
+            print(side.judge())
+            time.sleep(1)
 
     except KeyboardInterrupt:
         GPIO.cleanup()
+        spi.close()
         print("プログラムを終了します")
         sys.exit(0)
 
