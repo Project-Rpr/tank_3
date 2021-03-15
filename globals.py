@@ -1,3 +1,6 @@
+#終了フラグ
+quit = False
+
 #ON/OFF
 ON  = 1
 OFF = 0
@@ -21,6 +24,10 @@ T_time  = 0.5
 S_time  = 1
 #音声入力時間
 V_time  = 2
+
+
+#音声入力モード起動待ち時間
+VOICE_WAIT = 5
 
 
 #超音波センサ

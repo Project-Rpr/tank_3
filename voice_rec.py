@@ -1,3 +1,4 @@
+import globals as G
 import word_check
 import subprocess
 import socket
@@ -19,7 +20,7 @@ class voice_rec():
         # Juliusソケット通信の接続確認変数 True:接続中 / False:未接続
         connect = False
 
-        while True:
+        while not G.quit:
             # Juliusサーバーにソケット通信接続（未接続時）
             while connect == False:
                 try:
@@ -56,3 +57,6 @@ class voice_rec():
 
             #入力された音声が登録語句を含むか確認
             word_check.word_check(self.word)
+
+def func():
+    start = voice_rec()

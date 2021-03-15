@@ -13,38 +13,42 @@ import time
 A_time = 2
 
 
-#########################
-#   front.py            #
-#########################
 #前面距離の出力 (ON/OFF)
 print_front_distance = G.OFF
-
-#########################
-#   side.py             #
-#########################
 #アナログ値の出力   (ON/OFF)
-print_adc            = G.OFF
+print_adc            = G.ON
 #入力電圧値の出力   (ON/OFF)
-print_volts          = G.OFF
+print_volts          = G.ON
 #側面距離の出力     (ON/OFF)
 print_side_distance = G.ON
-
-#########################
-#   motor.py            #
-#########################
 #動作制御命令の出力 (ON/OFF)
 print_motor         = G.ON
 
 
+
+#########################
+#   front.py            #
+#########################
 #前面距離測定
 def front_distance():
     print('前面距離 =', math.floor(front.distance()), 'cm')
+
+#########################
+#   side.py             #
+#########################
+#旋回方向決定
+def side_judge():
+    print(side.judge())
+    time.sleep(A_time)
 
 #側面距離測定
 def side_distance():
     print(side.judge())
     time.sleep(A_time)
 
+#########################
+#   motor.py            #
+#########################
 #動作制御
 def auto_motor():
     motor.forward()
@@ -62,8 +66,11 @@ def auto_motor():
     motor.stop()
     time.sleep(A_time)
 
+#########################
+#   voice_rec.py        #
+#########################
 #自動音声入力
-def autoi_voice():
+def auto_voice():
     word = 'こんにちは'
     print(word)
     word_check.word_check(word)
@@ -105,8 +112,17 @@ def manual_voice():
     word = input()
     word_check.word_check(word)
 
-def read_GPIO():
-    print('MODE_PIN:' + str(GPIO.input(M.MODE_PIN)))
-    print('FORWARD_PIN:' + str(GPIO.input(M.FORWARD_PIN)))
-    print('RIGHT_PIN:' + str(GPIO.input(M.RIGHT_PIN)))
-    print('LEFT_PIN:' + str(GPIO.input(M.LEFT_PIN))) 
+
+def debug():
+    #音声認識機能起動待ち
+    time.sleep(G.VOICE_WAIT)
+    while not G.quit:
+        print("デバッグ")
+        #front_distance()
+        #side_judge()
+        #side_distance()
+        #auto_motor()
+        #auto_voice()
+        #manual_voice()
+
+        time.sleep(1)
