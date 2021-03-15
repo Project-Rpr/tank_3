@@ -117,7 +117,7 @@ def debug():
     #音声認識機能起動待ち
     time.sleep(G.VOICE_WAIT)
     while not G.quit:
-        print("デバッグ")
+        #print("デバッグ")
         #front_distance()
         #side_judge()
         #side_distance()
