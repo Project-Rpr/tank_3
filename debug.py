@@ -10,7 +10,7 @@ import math
 import time
 
 #動作時間(Active_time)
-A_time = 2
+A_time = 1
 
 
 #前面距離の出力     (ON/OFF)
@@ -18,16 +18,16 @@ print_front_distance = \
 G.OFF
 #アナログ値の出力   (ON/OFF)
 print_adc            = \
-G.ON
+G.OFF
 #入力電圧値の出力   (ON/OFF)
 print_volts          = \
-G.ON
+G.OFF
 #側面距離の出力     (ON/OFF)
 print_side_distance  = \
-G.ON
+G.OFF
 #動作制御命令の出力 (ON/OFF)
 print_motor          = \
-G.ON
+G.OFF
 
 
 #前面距離測定       (ON/OFF)
@@ -41,8 +41,7 @@ auto_motor_test     = \
 G.OFF
 #自動音声入力       (ON/OFF)
 auto_voice_test     = \
-G.OFF
-#G.ON
+G.ON
 #手動音声入力       (ON/OFF)
 manual_voice_test   = \
 G.OFF
@@ -90,43 +89,34 @@ def auto_motor():
 def auto_voice():
     word = 'こんにちは'
     print(word)
-    word_check.word_check(word)
-    time.sleep(A_time)
-
-    word = 'スタート'
-    print(word)
-    word_check.word_check(word)
+    word_check.func(word)
     time.sleep(A_time)
 
     word = '前進'
     print(word)
-    word_check.word_check(word)
+    word_check.func(word)
     time.sleep(A_time)
 
     word = '右'
     print(word)
-    word_check.word_check(word)
+    word_check.func(word)
+    time.sleep(A_time)
 
     word = '左'
     print(word)
-    word_check.word_check(word)
+    word_check.func(word)
     time.sleep(A_time)
 
     word = 'ストップ'
     print(word)
-    word_check.word_check(word)
-    time.sleep(A_time)
-
-    word = 'スタート'
-    print(word)
-    word_check.word_check(word)
+    word_check.func(word)
     time.sleep(A_time)
 
 #手動音声入力
 def manual_voice():
     print('語句を入力')
     word = input()
-    word_check.word_check(word)
+    word_check.func(word)
 
 
 def test():

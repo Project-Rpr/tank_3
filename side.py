@@ -15,18 +15,6 @@ D_list = [  6 ,  10 ,  15 ,  20 ,  30 ,  50  , 60  , 80]
 #電圧リスト
 V_list = [3.15, 2.3 , 1.65, 1.3 , 0.9 , 0.6 , 0.5 , 0.4]
 
-def calcDistance(D_S, D_L, V_L, V_S, volts):
-    Ddiff = (D_L - D_S)
-    Vdiff = (V_L - V_S)
-    Vcalc = (V_L - volts) * 100
-
-    cmPer0_01V = (Ddiff / Vdiff) / 100
-
-    Dcalc = (Vcalc * cmPer0_01V)
-    distance = (D_S + Dcalc)
-
-    return distance
-
 def direction():
     left  = getDistance(G.LEFT)
     right = getDistance(G.RIGHT)
@@ -73,7 +61,9 @@ def convertDistances(volts):
     distance = 0
 
     if(V_list[-1] > volts)or(volts > V_list[0]):
-        print('out of range.')
+        #デバッグ用
+        if debug.print_side_distance == G.ON:
+            print('out of range.')
     elif(V_list[0] >= volts)and(volts > V_list[1]):
         distance = calcDistance(D_list[0],D_list[1],V_list[0],V_list[1],volts)
     elif(V_list[1] >= volts)and(volts > V_list[2]):
@@ -90,6 +80,18 @@ def convertDistances(volts):
         distance = calcDistance(D_list[6],D_list[7],V_list[6],V_list[7],volts)
     else:
         pass
+
+    return distance
+
+def calcDistance(D_S, D_L, V_L, V_S, volts):
+    Ddiff = (D_L - D_S)
+    Vdiff = (V_L - V_S)
+    Vcalc = (V_L - volts) * 100
+
+    cmPer0_01V = (Ddiff / Vdiff) / 100
+
+    Dcalc = (Vcalc * cmPer0_01V)
+    distance = (D_S + Dcalc)
 
     return distance
 

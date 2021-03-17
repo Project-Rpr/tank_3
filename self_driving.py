@@ -4,10 +4,10 @@ import front
 import side
 import motor
 import debug
+import word_check as WC
 
 import RPi.GPIO as GPIO
 import time
-#import math
 
 
 def func():
@@ -19,6 +19,10 @@ def func():
     t_flag      = 0     #旋回方向判定フラグ
 
     while not M.quit:
+        #音声入力確認
+        if WC.C == G.OFF:
+            voice_input()
+        
         #前面距離を取得
         f_distance = front.distance()
 
@@ -69,3 +73,41 @@ def func():
         #前面距離が「旋回距離」以上の場合
         elif f_distance >= G.TURN_D:
             motor.forward()
+
+def voice_input():
+    #print(WC.S, WC.F, WC.L, WC.R, WC.C)
+
+    if WC.S == G.ON:
+        print("停止(音声入力)")
+        #動作前停止
+        motor.stop()
+        time.sleep(G.S_time)
+        #音声入力による制御
+        time.sleep(G.S_time)
+
+    elif WC.F == G.ON:
+        print("前進(音声入力)")
+        #動作前停止
+        motor.stop()
+        time.sleep(G.S_time)
+        #音声入力による制御
+        motor.forward()
+
+    elif WC.L == G.ON:
+        print("左旋回(音声入力)")
+        #動作前停止
+        motor.stop()
+        time.sleep(G.S_time)
+        #音声入力による制御
+        motor.t_left()
+        time.sleep(G.T_time)
+
+    elif WC.R == G.ON:
+        print("右旋回(音声入力)")
+        #動作前停止
+        motor.stop()
+        time.sleep(G.S_time)
+        #音声入力による制御
+        motor.t_right()
+        time.sleep(G.T_time)
+

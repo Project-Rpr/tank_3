@@ -25,10 +25,17 @@ S_time  = 1
 #音声入力時間
 V_time  = 2
 
-
 #音声入力モード起動待ち時間
 VOICE_WAIT = 5
 
+#前進フラグ
+#F_flag = OFF
+#左旋回フラグ
+#L_flag = OFF
+#右旋回フラグ
+#R_flag = OFF
+#停止フラグ
+#S_flag = OFF
 
 #超音波センサ
 TRIG = 17
@@ -49,5 +56,5 @@ RIGHT_BACK          = [RIGHT_BACK_0, RIGHT_BACK_1, RIGHT_BACK_POWER]
 OUT_GPIOs   = [ TRIG,\
                 LEFT_BACK_0, LEFT_BACK_1, LEFT_BACK_POWER,\
                 RIGHT_BACK_0, RIGHT_BACK_1, RIGHT_BACK_POWER]
-IN_GPIOs    = [ECHO]
+IN_GPIOs    = [ ECHO ]
 

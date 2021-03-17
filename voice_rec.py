@@ -58,7 +58,7 @@ class voice_rec():
             print(self.word)
 
             #入力された音声が登録語句を含むか確認
-            word_check.word_check(self.word)
+            word_check.func(self.word)
 
 def func():
     start = voice_rec()
