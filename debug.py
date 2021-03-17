@@ -13,17 +13,39 @@ import time
 A_time = 2
 
 
-#前面距離の出力 (ON/OFF)
-print_front_distance = G.OFF
+#前面距離の出力     (ON/OFF)
+print_front_distance = \
+G.OFF
 #アナログ値の出力   (ON/OFF)
-print_adc            = G.ON
+print_adc            = \
+G.ON
 #入力電圧値の出力   (ON/OFF)
-print_volts          = G.ON
+print_volts          = \
+G.ON
 #側面距離の出力     (ON/OFF)
-print_side_distance = G.ON
+print_side_distance  = \
+G.ON
 #動作制御命令の出力 (ON/OFF)
-print_motor         = G.ON
+print_motor          = \
+G.ON
 
+
+#前面距離測定       (ON/OFF)
+front_distance_test = \
+G.OFF
+#側面距離測定       (ON/OFF)
+side_distance_test  = \
+G.OFF
+#動作制御           (ON/OFF)
+auto_motor_test     = \
+G.OFF
+#自動音声入力       (ON/OFF)
+auto_voice_test     = \
+G.OFF
+#G.ON
+#手動音声入力       (ON/OFF)
+manual_voice_test   = \
+G.OFF
 
 
 #########################
@@ -36,11 +58,6 @@ def front_distance():
 #########################
 #   side.py             #
 #########################
-#旋回方向決定
-def side_judge():
-    print(side.judge())
-    time.sleep(A_time)
-
 #側面距離測定
 def side_distance():
     print(side.judge())
@@ -74,37 +91,36 @@ def auto_voice():
     word = 'こんにちは'
     print(word)
     word_check.word_check(word)
-    time.sleep(debug_time)
+    time.sleep(A_time)
 
     word = 'スタート'
     print(word)
     word_check.word_check(word)
-    time.sleep(debug_time)
+    time.sleep(A_time)
 
     word = '前進'
     print(word)
     word_check.word_check(word)
-    time.sleep(debug_time)
+    time.sleep(A_time)
 
     word = '右'
     print(word)
     word_check.word_check(word)
-    time.sleep(debug_time)
 
     word = '左'
     print(word)
     word_check.word_check(word)
-    time.sleep(debug_time)
+    time.sleep(A_time)
 
     word = 'ストップ'
     print(word)
     word_check.word_check(word)
-    time.sleep(debug_time)
+    time.sleep(A_time)
 
     word = 'スタート'
     print(word)
     word_check.word_check(word)
-    time.sleep(debug_time)
+    time.sleep(A_time)
 
 #手動音声入力
 def manual_voice():
@@ -113,16 +129,39 @@ def manual_voice():
     word_check.word_check(word)
 
 
-def debug():
+def test():
+    while not M.quit:
+        #前面距離測定
+        if front_distance_test == G.ON:
+            front_distance()
+            continue
+
+        #側面距離測定
+        if side_distance_test == G.ON:
+            side_distance()
+            continue
+
+        #動作制御
+        if auto_motor_test == G.ON:
+            auto_motor()
+            continue
+
+        break
+
+def func():
     #音声認識機能起動待ち
     time.sleep(G.VOICE_WAIT)
-    while not G.quit:
+    while not M.quit:
         #print("デバッグ")
-        #front_distance()
-        #side_judge()
-        #side_distance()
-        #auto_motor()
-        #auto_voice()
-        #manual_voice()
-
+        
         time.sleep(1)
+        #自動音声入力
+        if auto_voice_test == G.ON:
+            auto_voice()
+            continue
+        #自動音声入力
+        if manual_voice_test == G.ON:
+            manual_voice()
+            continue
+
+        break

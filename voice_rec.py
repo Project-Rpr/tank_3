@@ -1,8 +1,10 @@
+import main as M
 import globals as G
 import word_check
+
 import subprocess
 import socket
-import RPi.GPIO as GPIO
+
 
 class voice_rec():
 
@@ -20,7 +22,7 @@ class voice_rec():
         # Juliusソケット通信の接続確認変数 True:接続中 / False:未接続
         connect = False
 
-        while not G.quit:
+        while not M.quit:
             # Juliusサーバーにソケット通信接続（未接続時）
             while connect == False:
                 try:

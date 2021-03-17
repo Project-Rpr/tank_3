@@ -18,7 +18,7 @@ def func():
     f_distance  = 0     #前面距離
     t_flag      = 0     #旋回方向判定フラグ
 
-    while not G.quit:
+    while not M.quit:
         #前面距離を取得
         f_distance = front.distance()
 

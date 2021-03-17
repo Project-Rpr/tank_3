@@ -43,48 +43,19 @@ def word_check(word):
         else:
             pass
 
-    debug.read_GPIO()   #デバッグ
     time.sleep(rec_time)
-    #print('cleanup')    #デバッグ
-    cleanup()
-    #debug.read_GPIO()   #デバッグ
 
 def voice_mode_ON():
-    GPIO.output(M.MODE_PIN, ON)
-    GPIO.output(M.FORWARD_PIN, OFF)
-    GPIO.output(M.RIGHT_PIN, OFF)
-    GPIO.output(M.LEFT_PIN, OFF)
+    pass
 
 def forward():
-    GPIO.output(M.MODE_PIN, ON)
-    GPIO.output(M.FORWARD_PIN, ON)
-    GPIO.output(M.RIGHT_PIN, OFF)
-    GPIO.output(M.LEFT_PIN, OFF)
-    #print('python_forward')         #デバッグ
+    pass
 
 def t_Right():
-    GPIO.output(M.MODE_PIN, ON)
-    GPIO.output(M.FORWARD_PIN, OFF)
-    GPIO.output(M.RIGHT_PIN, ON)
-    GPIO.output(M.LEFT_PIN, OFF)
-    #print('python_right')           #デバッグ
+    pass
 
 def t_Left():
-    GPIO.output(M.MODE_PIN, ON)
-    GPIO.output(M.FORWARD_PIN, OFF)
-    GPIO.output(M.RIGHT_PIN, OFF)
-    GPIO.output(M.LEFT_PIN, ON)
-    #print('python_left')            #デバッグ
+    pass
 
 def stop():
-    GPIO.output(M.MODE_PIN, ON)
-    GPIO.output(M.FORWARD_PIN, OFF)
-    GPIO.output(M.RIGHT_PIN, OFF)
-    GPIO.output(M.LEFT_PIN, OFF)
-    #print('python_stop')            #デバッグ
-
-def cleanup():
-    GPIO.output(M.MODE_PIN, OFF)
-    GPIO.output(M.FORWARD_PIN, OFF)
-    GPIO.output(M.RIGHT_PIN, OFF)
-    GPIO.output(M.LEFT_PIN, OFF)
+    pass

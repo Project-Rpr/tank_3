@@ -1,5 +1,5 @@
 #終了フラグ
-quit = False
+#quit = True
 
 #ON/OFF
 ON  = 1
