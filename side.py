@@ -61,9 +61,18 @@ def convertDistance(volts):
     distance = 0
 
     if(V_list[-1] > volts)or(volts > V_list[0]):
-        #デバッグ用
-        if debug.print_side_distance == G.ON:
-            print('out of range.')
+        #遠近の判定
+        if volts < V_list[-1]:  #遠い場合
+            distance = 1000
+            #デバッグ用
+            if debug.print_side_distance == G.ON:
+                print('out of range(遠)')
+
+        else:                   #近い場合
+            #デバッグ用
+            if debug.print_side_distance == G.ON:
+                print('out of range(近)')
+
     elif(V_list[0] >= volts)and(volts > V_list[1]):
         distance = calcDistance(D_list[0],D_list[1],V_list[0],V_list[1],volts)
     elif(V_list[1] >= volts)and(volts > V_list[2]):
