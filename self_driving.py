@@ -20,9 +20,10 @@ def func():
 
     while not M.quit:
         #音声入力確認
-        if WC.C == G.OFF:
+        if WC.C == G.ON:
             voice_input()
-        
+            WC.C = G.OFF
+
         #前面距離を取得
         f_distance = front.distance()
 
@@ -63,6 +64,12 @@ def func():
 
             while f_distance < G.TURN_D:
                 f_distance = front.distance()
+
+                #音声入力確認
+                if WC.C == G.ON:
+                    voice_input()
+                    WC.C = G.OFF
+
                 time.sleep(G.T_time)
 
             #動作後停止
@@ -73,6 +80,7 @@ def func():
         #前面距離が「旋回距離」以上の場合
         elif f_distance >= G.TURN_D:
             motor.forward()
+
 
 def voice_input():
     #print(WC.S, WC.F, WC.L, WC.R, WC.C)

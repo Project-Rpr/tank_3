@@ -1,4 +1,3 @@
-import main as M
 import globals as G
 import debug
 

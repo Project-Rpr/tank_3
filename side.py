@@ -11,9 +11,9 @@ spi.open(0, 0)
 spi.max_speed_hz = 100000
 
 #距離リスト
-D_list = [  6 ,  10 ,  15 ,  20 ,  30 ,  50  , 60  , 80]
+D_list = [   6 ,  10 ,  15 ,  20 ,  30 ,  50 ,  60 ,  80 ]
 #電圧リスト
-V_list = [3.15, 2.3 , 1.65, 1.3 , 0.9 , 0.6 , 0.5 , 0.4]
+V_list = [ 3.15, 2.3 , 1.65, 1.3 , 0.9 , 0.6 , 0.5 , 0.4 ]
 
 def direction():
     left  = getDistance(G.LEFT)
@@ -27,7 +27,7 @@ def direction():
 def getDistance(side):
     adc      = readAdc(side)
     volts    = convertVolts(adc)
-    distance = convertDistances(volts)
+    distance = convertDistance(volts)
 
     #デバッグ用
     if debug.print_side_distance == G.ON:
@@ -57,7 +57,7 @@ def convertVolts(adc):
 
     return volts
 
-def convertDistances(volts):
+def convertDistance(volts):
     distance = 0
 
     if(V_list[-1] > volts)or(volts > V_list[0]):

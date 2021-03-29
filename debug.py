@@ -15,7 +15,7 @@ A_time = 1
 
 #前面距離の出力     (ON/OFF)
 print_front_distance = \
-G.OFF
+G.ON
 #アナログ値の出力   (ON/OFF)
 print_adc            = \
 G.OFF
@@ -24,10 +24,10 @@ print_volts          = \
 G.OFF
 #側面距離の出力     (ON/OFF)
 print_side_distance  = \
-G.OFF
+G.ON
 #動作制御命令の出力 (ON/OFF)
 print_motor          = \
-G.OFF
+G.ON
 
 
 #前面距離測定       (ON/OFF)
@@ -41,7 +41,7 @@ auto_motor_test     = \
 G.OFF
 #自動音声入力       (ON/OFF)
 auto_voice_test     = \
-G.ON
+G.OFF
 #手動音声入力       (ON/OFF)
 manual_voice_test   = \
 G.OFF
