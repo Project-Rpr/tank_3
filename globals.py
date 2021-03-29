@@ -25,15 +25,6 @@ V_time  = 2
 #音声認識モジュール起動待ち時間
 VOICE_WAIT = 5
 
-#前進フラグ
-#F_flag = OFF
-#左旋回フラグ
-#L_flag = OFF
-#右旋回フラグ
-#R_flag = OFF
-#停止フラグ
-#S_flag = OFF
-
 #超音波センサ
 TRIG = 17
 ECHO = 27

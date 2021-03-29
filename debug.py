@@ -28,7 +28,9 @@ G.ON
 #動作制御命令の出力 (ON/OFF)
 print_motor          = \
 G.ON
-
+#フラグ状態の出力   (ON/OFF)
+print_flags         = \
+G.OFF
 
 #前面距離測定       (ON/OFF)
 front_distance_test = \
