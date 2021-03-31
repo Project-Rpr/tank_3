@@ -26,9 +26,6 @@ def init():
     
 if __name__=='__main__':
     try:
-        #ループ終了フラグ
-        global quit
-
         #SPIセットアップ
         spi = spidev.SpiDev()
         #初期化
@@ -46,9 +43,6 @@ if __name__=='__main__':
             executor.submit(debug.func)
 
     except KeyboardInterrupt:
-        #ループ終了フラグ
-        global quit
-
         quit = True
         GPIO.cleanup()
         spi.close()
